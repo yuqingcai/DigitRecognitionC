@@ -147,7 +147,7 @@ static void InfMemory(FILE *source, unsigned char** memptr, size_t *memsize)
 
 int MnistToFile(const char* srcFileName, const char* destFileName)
 {
-    FILE* source = std::fopen(srcFileName, "r");
+    FILE* source = std::fopen(srcFileName, "rb");
     FILE* dest = std::fopen(destFileName, "w");
 
     assert(source && dest);
@@ -160,7 +160,7 @@ int MnistToFile(const char* srcFileName, const char* destFileName)
 
 void MnistToMemory(const char* srcFileName, unsigned char** ptr, size_t* length)
 {
-    FILE* source = std::fopen(srcFileName, "r");
+    FILE* source = std::fopen(srcFileName, "rb");
     assert(source && ptr && length);
 
     *ptr = nullptr;

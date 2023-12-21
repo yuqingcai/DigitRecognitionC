@@ -143,27 +143,27 @@ void Network::SGD(vector<Image*>& trainingImages,
 void Network::updateMiniBatch(vector<Image*>& miniBatch, float eta)
 {
     for (Image* image : miniBatch) {
-        image->display();
-        // tuple<
-        //     vector<vector<float>*>*, 
-        //     vector<vector<vector<float>*>*>*
-        // > delta = backprop(image->getBytes(), image->getLabel());
+        // image->display();
+        tuple<
+            vector<vector<float>*>*, 
+            vector<vector<vector<float>*>*>*
+        > delta = backprop(image->getBytes(), image->getLabel());
 
-        // vector<vector<float>*>* deltaNablaB = get<0>(delta);
-        // vector<vector<vector<float>*>*>* deltaNablaW = get<1>(delta);
+        vector<vector<float>*>* deltaNablaB = get<0>(delta);
+        vector<vector<vector<float>*>*>* deltaNablaW = get<1>(delta);
 
-        // freeBiases(deltaNablaB);
-        // freeWeights(deltaNablaW);
+        freeBiases(deltaNablaB);
+        freeWeights(deltaNablaW);
     }
     (void)eta;
 }
 
 tuple<vector<vector<float>*>*, vector<vector<vector<float>*>*>*> 
-Network::backprop(vector<float>x, vector<float>y)
+    Network::backprop(vector<float>x, vector<float>y)
 {
     vector<vector<float>*>* nablaB = createBiases(0.0, false);
     vector<vector<vector<float>*>*>* nablaW = createWeights(0.0, false);
-
+    
     // feedforward
     vector<vector<float>> zs;
     vector<vector<float>> activations;
@@ -195,31 +195,37 @@ Network::backprop(vector<float>x, vector<float>y)
     vector<float> sigmoidPrimes = sigmoidPrime(zs.back()); // σ'(zL)
     vector<float> delta = HadamardProduct(nablaC, sigmoidPrimes); // ẟL = ∇C ⊙ σ'(zL)
 
-    int l = _layers.size()-2;
-    // while (l >= 0) {
-
-    //     sigmoidPrimes = sigmoidPrime(zs[l]);
-    //     vector<float> dd = delta;
-        
-
-    //      _weights->at(l)->at(k)->at(j)*dd[j]
-
-    //     delta = HadamardProduct(dd, sigmoidPrimes);
-        
-    //     l --;
-    // }
-
-    l = nablaB->size()-1;
-    for (size_t i = 0; i < nablaB->at(l)->size(); i ++) {
-        nablaB->at(l)->at(i) = delta[i];
-    }
+//    size_t l = _layers.size() - 2;
+//
+//    vector<vector<float>> deltas;
+//    while (l >= 0) {
+//
+//        sigmoidPrimes = sigmoidPrime(zs[l]);
+//        vector<float> s;
+//        for (size_t k = 0; k < _weights->at(l)->at(0)->size(); k ++) {
+//            float t = 0.0;
+//            for (size_t j = 0; j < _weights->at(l)->at(0)->size(); j ++) {
+//                t += _weights->at(l)->at(k)->at(j) * delta[j];
+//            }
+//            s.push_back(t);
+//        }
+//        s = HadamardProduct(s, sigmoidPrimes);
+//        deltas.push_back(s);
+//        delta = s;
+//        l --;
+//    }
     
-    l = nablaW->size()-1;
-    for (size_t k = 0; k < nablaW->at(l)->size(); k ++) {
-        for (size_t j = 0; j < nablaW->at(l)->at(k)->size(); j ++) {
-            nablaW->at(l)->at(k)->at(j) = activations[l-1][k]*delta[j];
-        }
-    }
+    // l = nablaB->size()-1;
+    // for (size_t i = 0; i < nablaB->at(l)->size(); i ++) {
+    //     nablaB->at(l)->at(i) = delta[i];
+    // }
+    
+    // l = nablaW->size()-1;
+    // for (size_t k = 0; k < nablaW->at(l)->size(); k ++) {
+    //     for (size_t j = 0; j < nablaW->at(l)->at(k)->size(); j ++) {
+    //         nablaW->at(l)->at(k)->at(j) = activations[l-1][k]*delta[j];
+    //     }
+    // }
 
     return { nablaB, nablaW };
     
@@ -301,9 +307,11 @@ vector<float> Network::sigmoidPrime(vector<float> z)
 
 void Network::shuffleImages(vector<Image*>& images)
 {
-    unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-    shuffle(images.begin(), images.end(), 
-        default_random_engine(seed));
+//    unsigned int seed = (unsigned int)chrono::system_clock::
+//        now().time_since_epoch().count();
+    
+    shuffle(images.begin(), images.end(),
+        default_random_engine((unsigned int)time(0)));
 }
 
 vector<float> Network::feedforward(vector<float> x)

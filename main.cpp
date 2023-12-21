@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <cstdio>
 #include <vector>
+#include <string>
 #include "MnistLoader.hpp"
 #include "Image.hpp"
 #include "Helper.hpp"
@@ -96,13 +97,18 @@ void DeleteImages(vector<Image*>* images)
 
 int main()
 {
-    vector<Image*>* trainingImages = 
-        CreateImages("dataset/train-images-idx3-ubyte.gz", 
-            "dataset/train-labels-idx1-ubyte.gz");
+    string prefix = "/Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/";
+    
+    string trainingDataPath = prefix + "dataset/train-images-idx3-ubyte.gz";
+    string trainingLabelPath = prefix + "dataset/train-labels-idx1-ubyte.gz";
+    string testDataPath = prefix + "dataset/t10k-images-idx3-ubyte.gz";
+    string testLabelPath = prefix + "dataset/t10k-labels-idx1-ubyte.gz";
+    
+    vector<Image*>* trainingImages =
+        CreateImages(trainingDataPath.c_str(), trainingLabelPath.c_str());
 
     vector<Image*>* testImages = 
-        CreateImages("dataset/t10k-images-idx3-ubyte.gz",
-            "dataset/t10k-labels-idx1-ubyte.gz");
+        CreateImages(testDataPath.c_str(), testLabelPath.c_str());
         
     Network net = Network(vector<int>{784, 30, 10});
     net.SGD(*trainingImages, 30, 10, 3.0, *testImages);
