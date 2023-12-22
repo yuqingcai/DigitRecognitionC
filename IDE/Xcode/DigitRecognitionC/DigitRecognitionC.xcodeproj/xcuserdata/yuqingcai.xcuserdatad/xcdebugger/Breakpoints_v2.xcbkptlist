@@ -23,22 +23,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "95692936-0518-4C5B-AB94-CE64677991C3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../../main.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "main()"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D64B2810-DFAC-4F80-B3BE-BFA4F714C8DE"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -55,16 +39,202 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D47A9F4B-B448-4FE1-B4BB-5E6C3262AF5C"
+            uuid = "38760A71-7C37-4977-8327-19FFDF98A5C6"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../Network.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
-            landmarkName = "Network::shuffleImages(images)"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "Network::backprop(x, y)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "38760A71-7C37-4977-8327-19FFDF98A5C6 - 3b007411edfc5846"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Network::backprop(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;, std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;)"
+                  moduleName = "DigitRecognitionC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/Network.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "728">
+               </Location>
+               <Location
+                  uuid = "38760A71-7C37-4977-8327-19FFDF98A5C6 - 3b007411edfc5846"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Network::backprop(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;, std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;)"
+                  moduleName = "DigitRecognitionC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/Network.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "732">
+               </Location>
+               <Location
+                  uuid = "38760A71-7C37-4977-8327-19FFDF98A5C6 - 3b007411edfc575d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Network::backprop(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;, std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;)"
+                  moduleName = "DigitRecognitionC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/Network.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "220"
+                  endingLineNumber = "220"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "38760A71-7C37-4977-8327-19FFDF98A5C6 - 3b007411edfc52b5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Network::backprop(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;, std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;)"
+                  moduleName = "DigitRecognitionC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/Network.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "244"
+                  endingLineNumber = "244"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "38760A71-7C37-4977-8327-19FFDF98A5C6 - 3b007411edfc52d0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Network::backprop(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;, std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;)"
+                  moduleName = "DigitRecognitionC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/Network.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "247"
+                  endingLineNumber = "247"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "38760A71-7C37-4977-8327-19FFDF98A5C6 - 3b007411edfc53bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Network::backprop(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;, std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;)"
+                  moduleName = "DigitRecognitionC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/Network.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "252"
+                  endingLineNumber = "252"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C62693B7-BC32-4E9F-8B7A-4716B04C57A9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Network.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "Network::backprop(x, y)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C62693B7-BC32-4E9F-8B7A-4716B04C57A9 - 3b007411edfc52b5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Network::backprop(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;, std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;)"
+                  moduleName = "DigitRecognitionC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/Network.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "244"
+                  endingLineNumber = "244"
+                  offsetFromSymbolStart = "768">
+               </Location>
+               <Location
+                  uuid = "C62693B7-BC32-4E9F-8B7A-4716B04C57A9 - 3b007411edfc5163"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Network::backprop(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;, std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;)"
+                  moduleName = "DigitRecognitionC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/Network.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "266"
+                  endingLineNumber = "266"
+                  offsetFromSymbolStart = "736">
+               </Location>
+               <Location
+                  uuid = "C62693B7-BC32-4E9F-8B7A-4716B04C57A9 - 3b007411edfc518e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Network::backprop(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;, std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;)"
+                  moduleName = "DigitRecognitionC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/Network.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "736">
+               </Location>
+               <Location
+                  uuid = "C62693B7-BC32-4E9F-8B7A-4716B04C57A9 - 3b007411edfc6e6b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Network::backprop(std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;, std::__1::vector&lt;float, std::__1::allocator&lt;float&gt;&gt;)"
+                  moduleName = "DigitRecognitionC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/Network.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "274"
+                  endingLineNumber = "274"
+                  offsetFromSymbolStart = "736">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC927BC0-9981-4BDA-8FBE-F678C52DA445"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../Network.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "Network::backprop(x, y)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

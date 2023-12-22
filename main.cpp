@@ -97,12 +97,10 @@ void DeleteImages(vector<Image*>* images)
 
 int main()
 {
-    string prefix = "/Volumes/VolumeEXT/Project/NNDL/DigitRecognitionC/";
-    
-    string trainingDataPath = prefix + "dataset/train-images-idx3-ubyte.gz";
-    string trainingLabelPath = prefix + "dataset/train-labels-idx1-ubyte.gz";
-    string testDataPath = prefix + "dataset/t10k-images-idx3-ubyte.gz";
-    string testLabelPath = prefix + "dataset/t10k-labels-idx1-ubyte.gz";
+    string trainingDataPath = "dataset/train-images-idx3-ubyte.gz";
+    string trainingLabelPath = "dataset/train-labels-idx1-ubyte.gz";
+    string testDataPath = "dataset/t10k-images-idx3-ubyte.gz";
+    string testLabelPath = "dataset/t10k-labels-idx1-ubyte.gz";
     
     vector<Image*>* trainingImages =
         CreateImages(trainingDataPath.c_str(), trainingLabelPath.c_str());
@@ -110,8 +108,8 @@ int main()
     vector<Image*>* testImages = 
         CreateImages(testDataPath.c_str(), testLabelPath.c_str());
         
-    Network net = Network(vector<int>{784, 30, 10});
-    net.SGD(*trainingImages, 30, 10, 3.0, *testImages);
+    Network net = Network(vector<int>{784, 30, 40, 50, 60, 10});
+    net.SGD(*trainingImages, 30, 10, 2.0, *testImages);
     
     DeleteImages(testImages);
     DeleteImages(trainingImages);

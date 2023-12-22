@@ -1,6 +1,7 @@
 
 #include <cstdlib>
 #include <cstdio>
+#include <cassert>
 #include <cmath>
 #include <algorithm>
 #include <ctime>
@@ -23,8 +24,11 @@ Network::~Network()
 
 vector<vector<float>*>* Network::createBiases(float initValue, bool random)
 {
-    srand((unsigned)time(NULL));
-
+    //srand((unsigned)time(NULL));
+    
+    default_random_engine generator;
+    normal_distribution<float> distribution(0.0, 1.0);
+    
     vector<vector<float>*>* biases = new vector<vector<float>*>();
 
     for (size_t i = 1; i < _layers.size(); i ++) {
@@ -33,7 +37,7 @@ vector<vector<float>*>* Network::createBiases(float initValue, bool random)
 
         for (int j = 0; j < _layers[i]; j ++) {
             if (random) {
-                b->push_back((float)rand()/RAND_MAX);
+                b->push_back(distribution(generator));
             }
             else {
                 b->push_back(initValue);
@@ -59,7 +63,10 @@ void Network::freeBiases(vector<vector<float>*>* biases)
 vector<vector<vector<float>*>*>* 
     Network::createWeights(float initValue, bool random)
 {
-    srand((unsigned)time(NULL));
+    //srand((unsigned)time(NULL));
+        
+    default_random_engine generator;
+    normal_distribution<float> distribution(0.0, 1.0);
 
     vector<vector<vector<float>*>*>* weights = 
         new vector<vector<vector<float>*>*>();
@@ -74,7 +81,7 @@ vector<vector<vector<float>*>*>*
 
             for (int k = 0; k < _layers[i+1]; k ++) {
                 if (random) {
-                    ww->push_back((float)rand()/RAND_MAX);
+                    ww->push_back(distribution(generator));
                 }
                 else {
                     ww->push_back(initValue);
@@ -116,12 +123,13 @@ void Network::SGD(vector<Image*>& trainingImages,
     vector<Image*>& testImages)
 {
     int n = trainingImages.size();
-
+    
     for (int j = 0; j < epochs; j ++) {
 
         shuffleImages(trainingImages);
         
         vector<vector<Image*>> miniBatches;
+        
         for (int k = 0; k < n; k += miniBatchSize) {
             vector<Image*> miniBatch;
             for (int i = 0; i < miniBatchSize; i ++) {
@@ -129,37 +137,78 @@ void Network::SGD(vector<Image*>& trainingImages,
             }
             miniBatches.push_back(miniBatch);
         }
-
+        
         for (vector<Image*> miniBatch : miniBatches) {
             updateMiniBatch(miniBatch, eta);
         }
-
+        
         printf("Epoch %d : %d / %ld\n", 
             j, evaluate(testImages), testImages.size());
+//        dumpWeights();
+//        dumpBias();
     }
 
 }
 
 void Network::updateMiniBatch(vector<Image*>& miniBatch, float eta)
 {
+    vector<vector<float>*>* nablaB = createBiases(0.0, false);
+    vector<vector<vector<float>*>*>* nablaW = createWeights(0.0, false);
+    
     for (Image* image : miniBatch) {
-        // image->display();
+        
         tuple<
-            vector<vector<float>*>*, 
+            vector<vector<float>*>*,
             vector<vector<vector<float>*>*>*
         > delta = backprop(image->getBytes(), image->getLabel());
 
         vector<vector<float>*>* deltaNablaB = get<0>(delta);
         vector<vector<vector<float>*>*>* deltaNablaW = get<1>(delta);
-
+        
+        for (size_t l = 0; l < nablaB->size(); l ++) {
+            for (size_t j = 0; j < nablaB->at(l)->size(); j ++) {
+                nablaB->at(l)->at(j) += deltaNablaB->at(l)->at(j);
+            }
+        }
+        
+        for (size_t l = 0; l < nablaW->size(); l ++) {
+            for (size_t k = 0; k < nablaW->at(l)->size(); k ++) {
+                for (size_t j = 0; j < nablaW->at(l)->at(0)->size(); j ++) {
+                    nablaW->at(l)->at(k)->at(j) += deltaNablaW->at(l)->at(k)->at(j);
+                }
+            }
+        }
+                
         freeBiases(deltaNablaB);
         freeWeights(deltaNablaW);
+        
     }
-    (void)eta;
+    
+    
+    for (size_t l = 0; l < nablaB->size(); l ++) {
+        for (size_t j = 0; j < nablaB->at(l)->size(); j ++) {
+            _biases->at(l)->at(j) -= (eta/miniBatch.size()) * 
+                nablaB->at(l)->at(j);
+        }
+    }
+    
+    for (size_t l = 0; l < nablaW->size(); l ++) {
+        for (size_t k = 0; k < nablaW->at(l)->size(); k ++) {
+            for (size_t j = 0; j < nablaW->at(l)->at(0)->size(); j ++) {
+                _weights->at(l)->at(k)->at(j) -= (eta/miniBatch.size()) * 
+                    nablaW->at(l)->at(k)->at(j);
+            }
+        }
+    }
+    
+    freeWeights(nablaW);
+    freeBiases(nablaB);
+    
 }
 
-tuple<vector<vector<float>*>*, vector<vector<vector<float>*>*>*> 
-    Network::backprop(vector<float>x, vector<float>y)
+tuple<vector<vector<float>*>*, 
+    vector<vector<vector<float>*>*>*>
+Network::backprop(vector<float>x, vector<float>y)
 {
     vector<vector<float>*>* nablaB = createBiases(0.0, false);
     vector<vector<vector<float>*>*>* nablaW = createWeights(0.0, false);
@@ -167,80 +216,126 @@ tuple<vector<vector<float>*>*, vector<vector<vector<float>*>*>*>
     // feedforward
     vector<vector<float>> zs;
     vector<vector<float>> activations;
-    activations.push_back(x);
-
-    for (size_t l = 0; l < _weights->size(); l ++) {
-
-        vector<float> activation;
-        vector<float> zz;
-
-        for (size_t j = 0; j < _weights->at(l)->at(0)->size(); j ++) {
     
+    activations.push_back(x);
+    
+//    for (size_t l = 0; l < _weights->size(); l ++) {
+//
+//        vector<float> av;
+//        vector<float> zv;
+//
+//        for (size_t j = 0; j < _weights->at(l)->at(0)->size(); j ++) {
+//    
+//            float z = 0.0;
+//            for (size_t k = 0; k < x.size(); k ++) {
+//                z += _weights->at(l)->at(k)->at(j) * x[k];
+//            }
+//            z += _biases->at(l)->at(j);
+//            
+//            zv.push_back(z);
+//            av.push_back(sigmoid(z));
+//        }
+//        
+//        zs.push_back(zv);
+//        activations.push_back(av);
+//        
+//        x = av;
+//    }
+    
+    
+    for (size_t l = 0; l < _layers.size()-1; l ++) {
+        vector<float> av;
+        vector<float> zv;
+
+        for (int j = 0; j < _layers[l+1]; j ++) {
             float z = 0.0;
-            for (size_t k = 0; k < x.size(); k ++) {
+            for (int k = 0; k < _layers[l]; k ++) {
                 z += x[k] * _weights->at(l)->at(k)->at(j);
             }
             z += _biases->at(l)->at(j);
-            zz.push_back(z);
-            activation.push_back(sigmoid(z));
+
+            zv.push_back(z);
+            av.push_back(sigmoid(z));
         }
-        
-        zs.push_back(zz);
-        activations.push_back(activation);
-        x = activation;
+
+        zs.push_back(zv);
+        activations.push_back(av);
+
+        x = av;
     }
 
     // backward pass
     vector<float> nablaC = costDerivative(activations.back(), y); // ∇C
     vector<float> sigmoidPrimes = sigmoidPrime(zs.back()); // σ'(zL)
     vector<float> delta = HadamardProduct(nablaC, sigmoidPrimes); // ẟL = ∇C ⊙ σ'(zL)
-
-//    size_t l = _layers.size() - 2;
-//
-//    vector<vector<float>> deltas;
-//    while (l >= 0) {
-//
-//        sigmoidPrimes = sigmoidPrime(zs[l]);
-//        vector<float> s;
-//        for (size_t k = 0; k < _weights->at(l)->at(0)->size(); k ++) {
-//            float t = 0.0;
-//            for (size_t j = 0; j < _weights->at(l)->at(0)->size(); j ++) {
-//                t += _weights->at(l)->at(k)->at(j) * delta[j];
-//            }
-//            s.push_back(t);
-//        }
-//        s = HadamardProduct(s, sigmoidPrimes);
-//        deltas.push_back(s);
-//        delta = s;
-//        l --;
-//    }
     
-    // l = nablaB->size()-1;
-    // for (size_t i = 0; i < nablaB->at(l)->size(); i ++) {
-    //     nablaB->at(l)->at(i) = delta[i];
-    // }
+    vector<vector<float>> deltas;
+    deltas.insert(deltas.begin(), delta);
     
-    // l = nablaW->size()-1;
-    // for (size_t k = 0; k < nablaW->at(l)->size(); k ++) {
-    //     for (size_t j = 0; j < nablaW->at(l)->at(k)->size(); j ++) {
-    //         nablaW->at(l)->at(k)->at(j) = activations[l-1][k]*delta[j];
-    //     }
-    // }
-
+    // l point to the second last Neural networks layer, and the last zs layer
+    size_t l = _layers.size() - 2;
+    
+    while (l > 0) {
+        vector<float> wdv;
+        for (int k = 0; k < _layers[l]; k ++) {
+            float t = 0.0;
+            for (int j = 0; j < _layers[l+1]; j ++) {
+                t += _weights->at(l)->at(k)->at(j) * delta[j];
+            }
+            wdv.push_back(t);
+        }
+        delta = HadamardProduct(wdv, sigmoidPrime(zs[l-1]));
+        deltas.insert(deltas.begin(), delta);
+        l --;
+    }
+    
+    for (size_t l = 0; l < nablaB->size(); l ++) {
+        for (size_t j = 0; j < nablaB->at(l)->size(); j ++) {
+            nablaB->at(l)->at(j) = deltas[l][j];
+        }
+    }
+    
+    for (size_t l = 0; l < nablaW->size(); l ++) {
+        for (size_t k = 0; k < nablaW->at(l)->size(); k ++) {
+            for (size_t j = 0; j < nablaW->at(l)->at(0)->size(); j ++) {
+                nablaW->at(l)->at(k)->at(j) = activations[l][k] * deltas[l][j];
+            }
+        }
+    }
+        
     return { nablaB, nablaW };
-    
+}
+
+int Network::maxIndexInVector(vector<float> v)
+{
+    int j = 0;
+    for (size_t i = 1; i < v.size(); i ++) {
+        if (v[j] < v[i])
+            j = (int)i;
+    }
+    return j;
 }
 
 int Network::evaluate(vector<Image*>& images)
 {
-    (void)images;
-    return 0;
+    int c = 0;
+    for (size_t i = 0; i < images.size(); i ++) {
+        vector<float> x = feedforward(images[i]->getBytes());
+        vector<float> y = images[i]->getLabel();
+        int a = maxIndexInVector(x);
+        int b = maxIndexInVector(y);
+        if (a == b) {
+            c ++;
+        }
+    }
+    
+    return c;
 }
 
-void Network::dumpBias()
+void Network::dumpBiases(vector<vector<float>*>* biases)
 {
-    for (size_t i = 0; i < _biases->size(); i ++) {
-        vector<float>* b = _biases->at(i);
+    for (size_t i = 0; i < biases->size(); i ++) {
+        vector<float>* b = biases->at(i);
         printf("[");
         for (size_t j = 0; j < b->size(); j ++) {
             printf("%0.4f, ", b->at(j));
@@ -250,10 +345,10 @@ void Network::dumpBias()
     printf("\n");
 }
 
-void Network::dumpWeights()
+void Network::dumpWeights(vector<vector<vector<float>*>*>* weights)
 {
-    for (size_t i = 0; i < _weights->size(); i ++) {
-        vector<vector<float>*>* w = _weights->at(i);
+    for (size_t i = 0; i < weights->size(); i ++) {
+        vector<vector<float>*>* w = weights->at(i);
         printf("[");
         for (size_t j = 0; j < w->size(); j ++) {
             vector<float>* ww = w->at(j);
@@ -307,9 +402,6 @@ vector<float> Network::sigmoidPrime(vector<float> z)
 
 void Network::shuffleImages(vector<Image*>& images)
 {
-//    unsigned int seed = (unsigned int)chrono::system_clock::
-//        now().time_since_epoch().count();
-    
     shuffle(images.begin(), images.end(),
         default_random_engine((unsigned int)time(0)));
 }

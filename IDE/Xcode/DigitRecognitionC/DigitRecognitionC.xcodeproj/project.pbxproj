@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		8A3F19292B341D3D00C39EF6 /* MnistLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F19202B341D3C00C39EF6 /* MnistLoader.cpp */; };
 		8A3F192A2B341D3D00C39EF6 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F19212B341D3C00C39EF6 /* Image.cpp */; };
-		8A3F192B2B341D3D00C39EF6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F19222B341D3C00C39EF6 /* main.cpp */; };
 		8A3F192C2B341D3D00C39EF6 /* Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F19242B341D3D00C39EF6 /* Helper.cpp */; };
 		8A3F192D2B341D3D00C39EF6 /* Network.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F19252B341D3D00C39EF6 /* Network.cpp */; };
+		8AF1641F2B351B0E00AABB38 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8AF1641E2B351B0E00AABB38 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,13 +30,13 @@
 		8A3F19162B341D0000C39EF6 /* DigitRecognitionC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DigitRecognitionC; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A3F19202B341D3C00C39EF6 /* MnistLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MnistLoader.cpp; path = ../../../../MnistLoader.cpp; sourceTree = "<group>"; };
 		8A3F19212B341D3C00C39EF6 /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Image.cpp; path = ../../../../Image.cpp; sourceTree = "<group>"; };
-		8A3F19222B341D3C00C39EF6 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../../../main.cpp; sourceTree = "<group>"; };
 		8A3F19232B341D3D00C39EF6 /* Image.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Image.hpp; path = ../../../../Image.hpp; sourceTree = "<group>"; };
 		8A3F19242B341D3D00C39EF6 /* Helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Helper.cpp; path = ../../../../Helper.cpp; sourceTree = "<group>"; };
 		8A3F19252B341D3D00C39EF6 /* Network.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Network.cpp; path = ../../../../Network.cpp; sourceTree = "<group>"; };
 		8A3F19262B341D3D00C39EF6 /* Network.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Network.hpp; path = ../../../../Network.hpp; sourceTree = "<group>"; };
 		8A3F19272B341D3D00C39EF6 /* Helper.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Helper.hpp; path = ../../../../Helper.hpp; sourceTree = "<group>"; };
 		8A3F19282B341D3D00C39EF6 /* MnistLoader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = MnistLoader.hpp; path = ../../../../MnistLoader.hpp; sourceTree = "<group>"; };
+		8AF1641E2B351B0E00AABB38 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../../../main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,11 +73,11 @@
 				8A3F19272B341D3D00C39EF6 /* Helper.hpp */,
 				8A3F19212B341D3C00C39EF6 /* Image.cpp */,
 				8A3F19232B341D3D00C39EF6 /* Image.hpp */,
-				8A3F19222B341D3C00C39EF6 /* main.cpp */,
 				8A3F19202B341D3C00C39EF6 /* MnistLoader.cpp */,
 				8A3F19282B341D3D00C39EF6 /* MnistLoader.hpp */,
 				8A3F19252B341D3D00C39EF6 /* Network.cpp */,
 				8A3F19262B341D3D00C39EF6 /* Network.hpp */,
+				8AF1641E2B351B0E00AABB38 /* main.cpp */,
 			);
 			path = DigitRecognitionC;
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 				8A3F192C2B341D3D00C39EF6 /* Helper.cpp in Sources */,
 				8A3F192A2B341D3D00C39EF6 /* Image.cpp in Sources */,
 				8A3F19292B341D3D00C39EF6 /* MnistLoader.cpp in Sources */,
-				8A3F192B2B341D3D00C39EF6 /* main.cpp in Sources */,
+				8AF1641F2B351B0E00AABB38 /* main.cpp in Sources */,
 				8A3F192D2B341D3D00C39EF6 /* Network.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
