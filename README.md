@@ -1,3 +1,5 @@
+# BreadcrumbsDigitRecognitionC
+
 Implementation in C of "Handwritten Digit Recognition" 
 in Michael Nielsen's book --"Neural Networks and Deep 
 Learning."
