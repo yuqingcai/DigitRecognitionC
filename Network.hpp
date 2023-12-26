@@ -38,10 +38,17 @@ protected:
     vector<float> HadamardProduct(vector<float> a, vector<float> b);
     vector<vector<float>*>*
         createBiases(float initValue, bool random);
+    void copyBiases(vector<vector<float> *>* dest,
+        vector<vector<float> *> *src);
     void freeBiases(vector<vector<float>*>* biases);
+    void exportBiases(vector<vector<float>*>* biases);
+    
     vector<vector<vector<float>*>*>*
         createWeights(float initValue, bool random);
+    void copyWeights(vector<vector<vector<float>*>*>* dest,
+                     vector<vector<vector<float>*>*>* src);
     void freeWeights(vector<vector<vector<float>*>*>* weights);
+    void exportWeights(vector<vector<vector<float>*>*>* weights);
     
     int maxIndexInVector(vector<float> v);
     
@@ -50,6 +57,8 @@ private:
     vector<vector<float>*>* _biases;
     vector<vector<vector<float>*>*>* _weights;
     
+    int _bestMatchCount;
 };
 
 #endif // NETWORK_HPP
+
