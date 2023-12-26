@@ -1,6 +1,8 @@
 #ifndef IMAGE_HPP
 #define IMAGE_HPP
 
+#include <vector>
+
 using namespace std;
 
 class Image 

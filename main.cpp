@@ -97,18 +97,15 @@ void DeleteImages(vector<Image*>* images)
 
 int main()
 {
-    string trainingDataPath = "dataset/train-images-idx3-ubyte.gz";
-    string trainingLabelPath = "dataset/train-labels-idx1-ubyte.gz";
-    string testDataPath = "dataset/t10k-images-idx3-ubyte.gz";
-    string testLabelPath = "dataset/t10k-labels-idx1-ubyte.gz";
-    
-    vector<Image*>* trainingImages =
-        CreateImages(trainingDataPath.c_str(), trainingLabelPath.c_str());
+    vector<Image*>* trainingImages = 
+        CreateImages("dataset/train-images-idx3-ubyte.gz", 
+            "dataset/train-labels-idx1-ubyte.gz");
 
     vector<Image*>* testImages = 
-        CreateImages(testDataPath.c_str(), testLabelPath.c_str());
+        CreateImages("dataset/t10k-images-idx3-ubyte.gz", 
+            "dataset/t10k-labels-idx1-ubyte.gz");
         
-    Network net = Network(vector<int>{784, 30, 40, 50, 60, 10});
+    Network net = Network(vector<int>{784, 30, 10});
     net.SGD(*trainingImages, 30, 10, 2.0, *testImages);
     
     DeleteImages(testImages);
