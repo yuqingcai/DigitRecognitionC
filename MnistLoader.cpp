@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cassert>
 #include <zlib.h>
+#include <string.h>
 #include "MnistLoader.hpp"
 
 #define CHUNK 163840

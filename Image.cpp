@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 #include "Image.hpp"
 
 Image::Image(int width, int height)

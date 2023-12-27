@@ -1,7 +1,6 @@
 #include <cstdlib>
 #include <cstdio>
 #include <vector>
-#include <string>
 #include "MnistLoader.hpp"
 #include "Image.hpp"
 #include "Helper.hpp"
@@ -105,7 +104,7 @@ int main()
     vector<Image*>* testImages = 
         CreateImages("dataset/t10k-images-idx3-ubyte.gz", 
             "dataset/t10k-labels-idx1-ubyte.gz");
-        
+    
 //    Network net = Network(vector<int>{784, 30, 10});
 //    net.SGD(*trainingImages, 30, 10, 3.0, *testImages);
     
