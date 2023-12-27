@@ -10,7 +10,8 @@ class Network
 {
 public:
     Network(vector<int> layers);
-    ~Network();
+    virtual ~Network();
+    
     void SGD(vector<Image*>& trainingImages,
         int epochs,
         int miniBatchSize,
@@ -31,7 +32,8 @@ protected:
     void updateMiniBatch(vector<Image*>& miniBatch, float eta);
     int evaluate(vector<Image*>& images);
     vector<float> feedforward(vector<float> a);
-    tuple< vector<vector<float>*>*, vector<vector<vector<float>*>*>* >
+    
+    virtual tuple< vector<vector<float>*>*, vector<vector<vector<float>*>*>* >
         backprop(vector<float>x, vector<float>y);
         
     vector<float> costDerivative(vector<float> a, vector<float> y);
@@ -52,7 +54,6 @@ protected:
     
     int maxIndexInVector(vector<float> v);
     
-private:
     vector<int> _layers;
     vector<vector<float>*>* _biases;
     vector<vector<vector<float>*>*>* _weights;

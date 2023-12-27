@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A31BEAC2B3C0C4F00E00F7E /* Network2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A31BEAA2B3C0C4F00E00F7E /* Network2.cpp */; };
 		8A3F19292B341D3D00C39EF6 /* MnistLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F19202B341D3C00C39EF6 /* MnistLoader.cpp */; };
 		8A3F192A2B341D3D00C39EF6 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F19212B341D3C00C39EF6 /* Image.cpp */; };
 		8A3F192C2B341D3D00C39EF6 /* Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A3F19242B341D3D00C39EF6 /* Helper.cpp */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8A31BEAA2B3C0C4F00E00F7E /* Network2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Network2.cpp; path = ../../../../Network2.cpp; sourceTree = "<group>"; };
+		8A31BEAB2B3C0C4F00E00F7E /* Network2.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Network2.hpp; path = ../../../../Network2.hpp; sourceTree = "<group>"; };
 		8A3F19162B341D0000C39EF6 /* DigitRecognitionC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DigitRecognitionC; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A3F19202B341D3C00C39EF6 /* MnistLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MnistLoader.cpp; path = ../../../../MnistLoader.cpp; sourceTree = "<group>"; };
 		8A3F19212B341D3C00C39EF6 /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Image.cpp; path = ../../../../Image.cpp; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 				8A3F19282B341D3D00C39EF6 /* MnistLoader.hpp */,
 				8A3F19252B341D3D00C39EF6 /* Network.cpp */,
 				8A3F19262B341D3D00C39EF6 /* Network.hpp */,
+				8A31BEAA2B3C0C4F00E00F7E /* Network2.cpp */,
+				8A31BEAB2B3C0C4F00E00F7E /* Network2.hpp */,
 				8AF1641E2B351B0E00AABB38 /* main.cpp */,
 			);
 			path = DigitRecognitionC;
@@ -144,6 +149,7 @@
 				8A3F19292B341D3D00C39EF6 /* MnistLoader.cpp in Sources */,
 				8AF1641F2B351B0E00AABB38 /* main.cpp in Sources */,
 				8A3F192D2B341D3D00C39EF6 /* Network.cpp in Sources */,
+				8A31BEAC2B3C0C4F00E00F7E /* Network2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

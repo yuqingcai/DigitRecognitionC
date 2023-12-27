@@ -35,7 +35,7 @@ CXX_FLAGS = $(INCLUDE_DIR) -std=c++20 -Wall -Wextra -Os
 %.d: %.c
 	$(CC) $(C_FLAGS) -MM $< -MT $*.o > $@
 
-dr: main.o MnistLoader.o Image.o Helper.o Network.o
+dr: main.o MnistLoader.o Image.o Helper.o Network.o Network2.o
 	$(CXX) $^ -o $@ $(LIBS)
 
 clean:

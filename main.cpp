@@ -6,6 +6,7 @@
 #include "Image.hpp"
 #include "Helper.hpp"
 #include "Network.hpp"
+#include "Network2.hpp"
 
 using namespace std;
 
@@ -105,8 +106,11 @@ int main()
         CreateImages("dataset/t10k-images-idx3-ubyte.gz", 
             "dataset/t10k-labels-idx1-ubyte.gz");
         
-    Network net = Network(vector<int>{784, 30, 10});
-    net.SGD(*trainingImages, 30, 10, 2.0, *testImages);
+//    Network net = Network(vector<int>{784, 30, 10});
+//    net.SGD(*trainingImages, 30, 10, 3.0, *testImages);
+    
+    Network2 net = Network2(vector<int>{784, 30, 10});
+    net.SGD(*trainingImages, 30, 10, 0.5, *testImages);
     
     DeleteImages(testImages);
     DeleteImages(trainingImages);

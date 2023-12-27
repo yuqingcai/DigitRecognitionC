@@ -18,8 +18,13 @@ Network::Network(vector<int> layers)
 
 Network::~Network()
 {
-    freeWeights(_weights);
-    freeBiases(_biases);
+    if (_weights) {
+        freeWeights(_weights);
+    }
+    
+    if (_biases) {
+        freeBiases(_biases);
+    }
 }
 
 vector<vector<float>*>* Network::createBiases(float initValue, bool random)
@@ -371,12 +376,16 @@ Network::backprop(vector<float>x, vector<float>y)
         l --;
     }
     
+    // ∂C/∂b = ẟ
     for (size_t l = 0; l < nablaB->size(); l ++) {
         for (size_t j = 0; j < nablaB->at(l)->size(); j ++) {
             nablaB->at(l)->at(j) = deltas[l][j];
         }
     }
     
+    // ∂C/∂w[l][k][j] = a[l-1][k]*ẟ[l][j]
+    // The subscripts are different from Michael Nielsen's book
+    //
     for (size_t l = 0; l < nablaW->size(); l ++) {
         for (size_t k = 0; k < nablaW->at(l)->size(); k ++) {
             for (size_t j = 0; j < nablaW->at(l)->at(0)->size(); j ++) {

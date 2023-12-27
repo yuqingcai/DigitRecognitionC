@@ -30,25 +30,23 @@
             filePath = "../../../main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "main()"
-            landmarkType = "9">
+            startingLineNumber = "119"
+            endingLineNumber = "119">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AF57C485-281D-4DC5-B543-AE09DE908812"
+            uuid = "9EFE77D2-F00F-47A9-A6F2-53D8CA71E508"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../Network.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "Network::SGD(trainingImages, epochs, miniBatchSize, eta, testImages)"
+            startingLineNumber = "392"
+            endingLineNumber = "392"
+            landmarkName = "Network::backprop(x, y)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
